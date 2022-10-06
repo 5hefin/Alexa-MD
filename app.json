@@ -1,0 +1,67 @@
+{
+  "name": "Alexa MD",
+  "description": "Alexa MD - Simple WhatsApp Multi Device Bot",
+  "keywords": ["whatsapp-bot", "multi-device", "shefin", "alexa-md", "alexa"],
+  "repository": "https://github.com/5hefin/Alexa-MD",
+  "stack": "container",
+  "env": {
+    "SESSION_ID": {
+      "description": "session id",
+      "required": true,
+      "value": ""
+    },
+    "SUDO": {
+      "description": "admin",
+      "required": true,
+      "value": "null"
+    },
+    "MODE": {
+      "description": "mode",
+      "required": true,
+      "value": "private"
+    },
+    "HEROKU_APP_NAME": {
+      "description": "heroku app name, same as above entered",
+      "required": true
+    },
+    "HEROKU_API_KEY": {
+      "description": "heroku account api key, https://dashboard.heroku.com/account",
+      "required": true
+    },
+    "LOG_MSG": {
+      "description": "show whatsapp msgs in log",
+      "required": false,
+      "value": "false"
+    },
+    "DISABLE_BOT": {
+      "description": "Example : jid,jid,... where bot not works in both ways.",
+      "required": false,
+      "value": "null"
+    },
+    "PREFIX": {
+      "description": "prefix for bot. all so can be null",
+      "required": true,
+      "value": "."
+    },
+    "STICKER_PACKNAME": {
+      "description": "sticker pack info",
+      "required": false,
+      "value": "Alexa,Shefin"
+    },
+    "BOT_INFO": {
+      "description": "botname,ownername,ownernumber,image url",
+      "required": true,
+      "value": "𝛥𝐿𝛯𝛸𝛥,𝑆𝛨𝛯𝐹𝛪𝛮,919567489404,https://i.imgur.com/daBdQPW.jpeg"
+    },
+    "LANGUAGE": {
+      "description": "bot language.",
+      "required": false,
+      "value": "english"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ]
+}
