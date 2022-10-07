@@ -1,4 +1,6 @@
-const { bot, styletext, Fancy, isPublic } = require('../lib/');
+const { bot, styletext, Fancy } = require('../lib/');
+const { MODE } = require("../config");
+var isPublic = MODE == 'public' ? false : true
 
 bot({pattern: "fancy ?(.*)", fromMe: isPublic, desc: "change text to fancy text fonts", type: "converter"}, async (message, match) => {
 if (!message.reply_message && !message.reply_message.text) return await message.reply("*Example :*\nfancy 32 replying text message")

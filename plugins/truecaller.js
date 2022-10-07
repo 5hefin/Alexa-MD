@@ -2,11 +2,13 @@ const {
   bot,
   trueCaller
 } = require("../lib");
+const { MODE } = require("../config");
+var isPublic = MODE == 'public' ? false : true
 
 bot(
   {
     pattern: "true ?(.*)",
-    fromMe: true,
+    fromMe: isPublic,
     desc: "Searches for number in truecaller!",
     type: "search",
   },

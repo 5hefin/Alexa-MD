@@ -3,11 +3,13 @@ const {
   commands,
   sendMenu,
 } = require("../lib/");
+const { MODE } = require("../config");
+var isPublic = MODE == 'public' ? false : true
 
 bot(
   {
     pattern: "menu",
-    fromMe: true,
+    fromMe: isPublic,
     type: "info",
   },
   async (message) => {
@@ -18,7 +20,7 @@ bot(
 bot(
   {
     pattern: "list",
-    fromMe: true,
+    fromMe: isPublic,
     dontAddCommandList: true,
   },
   async (message, match) => {

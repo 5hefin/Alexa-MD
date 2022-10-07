@@ -3,12 +3,14 @@ const {
 } = require("../lib/");
 const {
   STICKER_PACKNAME,
+  MODE
 } = require("../config");
+var isPublic = MODE == 'public' ? false : true
 
 bot(
   {
     pattern: "sticker ?(.*)",
-    fromMe: true,
+    fromMe: isPublic,
     desc: "Converts Photo or video to sticker",
     type: "media",
   },
@@ -24,7 +26,7 @@ bot(
 bot(
   {
     pattern: "take ?(.*)",
-    fromMe: true,
+    fromMe: isPublic,
     desc: "Changes sticker pack & author info",
     type: "media",
   },

@@ -6,10 +6,11 @@ const {
   yta,
   ytIdRegex,
   ytv,
-  toAudio,
-  isPublic
+  toAudio
 } = require("../lib/");
 const { search } = require("yt-search");
+const { MODE } = require("../config");
+var isPublic = MODE == 'public' ? false : true
 
 bot(
   {

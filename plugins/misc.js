@@ -1,5 +1,8 @@
 const { bot } = require("../lib/");
+const { MODE } = require("../config");
+var isPublic = MODE == 'public' ? false : true
 
+/*
 bot(
   {
     pattern: "react ?(.*)",
@@ -18,11 +21,12 @@ bot(
     await message.sendMessage(reactionMessage);
   }
 );
+*/
 
 bot(
   {
     pattern: "ping ?(.*)",
-    fromMe: true,
+    fromMe: isPublic,
     desc: "Bot response in second.",
     type: "info",
   },
@@ -50,7 +54,7 @@ bot(
 bot(
   {
     pattern: "readmore ?(.*)",
-    fromMe: true,
+    fromMe: isPublic,
     desc: "Readmore generator",
     type: "whatsapp",
   },
@@ -62,7 +66,7 @@ bot(
 bot(
   {
     pattern: "wame ?(.*)",
-    fromMe: true,
+    fromMe: isPublic,
     desc: "wame generator",
     type: "whatsapp",
   },
