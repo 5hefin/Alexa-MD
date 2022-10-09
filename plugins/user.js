@@ -87,29 +87,3 @@ bot(
     );
   }
 );
-
-bot(
-  {
-    pattern: "pin$",
-    fromMe: true,
-    desc: "pin a msg",
-    type: "whatsapp",
-  },
-  async (message) => {
-    await message.pinMsg(message.chat, true)
-    await message.send("_Pined_")
-  }
-);
-
-bot(
-  {
-    pattern: "unpin$",
-    fromMe: true,
-    desc: "unpin a msg",
-    type: "whatsapp"
-  },
-  async (message, match) => {
-    await message.pinMsg(message.chat, false)
-    await message.send("_Unpined_")
-  }
-);
