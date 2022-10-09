@@ -96,7 +96,7 @@ bot(
   }
 );
 
-command(
+bot(
   {
     pattern: "unmute",
     fromMe: true,
