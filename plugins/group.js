@@ -120,13 +120,8 @@ bot(
   },
   async (message, match) => {
     let [poll, opt] = match.split(",");
-    if (match.split(",") < 2)
-      return await message.reply(
-        `${prefix}poll question;option1,option2,option3.....`
-      );
-    
+    if (match.split(",") < 2) return await message.reply("poll question;option1,option2,option3...");
     let options = [];
-
     for (let i of opt.split(',')) {
       options.push({ optionName: i });
     }
