@@ -23,7 +23,7 @@ bot(
     desc: "Adds a person to group",
     type: "group",
   },
-  async (message, match) => {
+  async (message, match, client) => {
     if (!message.isGroup) return await message.reply('_This command only works in group chats_')
     const isbotAdmin = await isBotAdmins(message, client)
     if (!isbotAdmin) return await message.reply("I'm not an admin")
