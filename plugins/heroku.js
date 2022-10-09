@@ -129,10 +129,9 @@ bot(
     type: "heroku",
   },
   async (message) => {
-    var prefix = config.HANDLERS.split("")[0]
     const buttons = [
-      {buttonId: prefix +'setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
-      {buttonId: prefix +'setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
+      {buttonId: 'Setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
+      {buttonId: 'Setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
     ]
     await sendButton(buttons, "*Working mode control panel*", "Bot is currently running on "+config.MODE+" mode now", message)
   }
