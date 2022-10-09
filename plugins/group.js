@@ -1,9 +1,20 @@
 const {
   bot,
-  parsedJid,
   isUrl,
-  isAdmin
+  parsedJid
 } = require("../lib/");
+
+const isBotAdmins = async (message) => {
+const groupMetadata = await message.client.groupMetadata(message.chat)
+const admins = await groupMetadata.participants.filter(v => v.admin !== null).map(v => v.id)
+return admins.includes(message.user_id)
+}
+
+const isAdmin = async (message, user) => {
+const groupMetadata = await message.client.groupMetadata(message.chat)
+const admins = await groupMetadata.participants.filter(v => v.admin !== null).map(v => v.id)
+return admins.includes(user)
+}
 
 bot(
   {
@@ -12,11 +23,11 @@ bot(
     desc: "Adds a person to group",
     type: "group",
   },
-  async (message, match) => {
+  async (message, match, client) => {
     if (!message.isGroup) return await message.reply("_This command is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to add");
-    let admin = await isAdmin(message.jid, message.user, message.client);
+    let admin = await isBotAdmin(message, message.client);
     if (!admin) return await message.reply("_I'm not admin_");
     let jid = parsedJid(match);
     await message.add(jid);
