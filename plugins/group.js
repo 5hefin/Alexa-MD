@@ -27,7 +27,7 @@ bot(
 bot(
   {
     pattern: "kick",
-    fromMe: true
+    fromMe: true,
     desc: "kicks a person from group",
     type: "group",
   },
