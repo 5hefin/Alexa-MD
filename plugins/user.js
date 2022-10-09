@@ -87,3 +87,19 @@ bot(
     );
   }
 );
+
+bot(
+  {
+    pattern: "react ?(.*)",
+    fromMe: true,
+    desc: "React Message",
+    type: "user"
+  },
+  async (message, match) => {
+    var key = {
+        remoteJid: message.reply_message.jid,
+        id: message.reply_message.id
+    }
+    await message.sendReact(match[0], key);
+  }
+);
