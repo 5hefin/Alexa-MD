@@ -116,7 +116,7 @@ bot(
     pattern: "poll ?(.*)",
     fromMe: true,
     desc: "create poll",
-    type: "tool",
+    type: "whatsapp",
   },
   async (message, match) => {
     const poll = match.split(',')
