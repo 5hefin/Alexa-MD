@@ -90,16 +90,26 @@ bot(
 
 bot(
   {
-    pattern: "react ?(.*)",
+    pattern: "pin$",
     fromMe: true,
-    desc: "React Message",
-    type: "user"
+    desc: "pin a msg",
+    type: "whatsapp",
+  },
+  async (message) => {
+    await message.pinMsg(message.chat, true)
+    await message.send("_Pined_")
+  }
+);
+
+bot(
+  {
+    pattern: "unpin$",
+    fromMe: true,
+    desc: "unpin a msg",
+    type: "whatsapp"
   },
   async (message, match) => {
-    var key = {
-        remoteJid: message.reply_message.jid,
-        id: message.reply_message.id
-    }
-    await message.sendReact(match[0], key);
+    await message.pinMsg(message.chat, false)
+    await message.send("_Unpined_")
   }
 );
