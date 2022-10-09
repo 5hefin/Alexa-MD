@@ -11,7 +11,7 @@
       "value": ""
     },
     "SUDO": {
-      "description": "admin",
+      "description": "These numbers can control your bot. Also add your bot using number",
       "required": true,
       "value": "null"
     },
