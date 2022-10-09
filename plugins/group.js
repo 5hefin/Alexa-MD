@@ -27,7 +27,7 @@ bot(
     if (!message.isGroup) return await message.reply("_This command is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to add");
-    let admin = await isBotAdmin(message, message.client);
+    let admin = await isBotAdmins(message, message.client);
     if (!admin) return await message.reply("_I'm not admin_");
     let jid = parsedJid(match);
     await message.add(jid);
