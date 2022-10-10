@@ -67,7 +67,7 @@ bot(
     type: "user",
   },
   async (message, match) => {
-    const plugins = await getPlugin(all);
+    const plugins = await getPlugin(match);
     if (!plugins) return await message.reply("_Plugins not installed_");
     let msg = '';
     plugins.map(({ name, url }) => { msg += `${name} : ${url}\n` });
