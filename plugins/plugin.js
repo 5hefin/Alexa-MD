@@ -60,23 +60,18 @@ bot(
 );
 
 bot(
-  { pattern: "plugin", fromMe: true, desc: "plugin list" , type:'user'},
+  {
+    pattern: "plugin",
+    fromMe: true,
+    desc: "Plugin list",
+    type: "user",
+  },
   async (message, match) => {
-    var mesaj = "";
-    var plugins = await PluginDB.findAll();
-    if (plugins.length < 1) {
-      return await message.sendMessage("_No external plugins installed_");
-    } else {
-      plugins.map((plugin) => {
-        mesaj +=
-          "```" +
-          plugin.dataValues.name +
-          "```: " +
-          plugin.dataValues.url +
-          "\n";
-      });
-      return await message.sendMessage(mesaj);
-    }
+    const plugins = await getPlugin();
+    if (!plugins) return await message.reply("_Plugins not installed_");
+    let msg = '';
+    plugins.map(({ name, url }) => { msg += `${name} : ${url}\n` });
+    return await message.sendMessage('```' + msg + '```');
   }
 );
 
