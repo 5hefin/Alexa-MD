@@ -54,7 +54,7 @@ bot(
       }
 
       await setPlugin(url, plugin_name);
-      await message.reply("_Installed: " + plugin_name_temp.join(", ") + " ✅_");
+      await message.reply("_Newly installed plugin: " + plugin_name_temp.join(", ") + "_");
     }
   }
 );
@@ -67,7 +67,7 @@ bot(
     type: "user",
   },
   async (message, match) => {
-    const plugins = await getPlugin();
+    const plugins = await getPlugin(all);
     if (!plugins) return await message.reply("_Plugins not installed_");
     let msg = '';
     plugins.map(({ name, url }) => { msg += `${name} : ${url}\n` });
