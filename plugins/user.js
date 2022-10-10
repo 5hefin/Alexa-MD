@@ -96,12 +96,6 @@ bot(
     type: "user" ,
   },
   async (message, match) => {
-    const reactionMessage = {
-      react: {
-          text: match,
-          key: message.reply_message.key
-       }
-    }
-   await message.client.sendMessage(message.jid, reactionMessage)
+   await message.sendReact(match, message.reply_message.key)
   }
 );
