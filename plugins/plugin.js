@@ -70,8 +70,8 @@ bot(
     const plugins = await getPlugin();
     if (!plugins) return await message.reply("_Plugins not installed_");
     let msg = '';
-    plugins.map(({ name, url }) => { msg += `${name} : ${url}\n` });
-    return await message.sendMessage('```' + msg + '```');
+    plugins.map((plugin) => { msg += '*' + plugin.dataValues.name + '* : ' + plugin.dataValues.url + '\n\n' });
+    return await message.reply(msg);
   }
 );
 
