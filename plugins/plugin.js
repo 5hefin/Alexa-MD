@@ -11,7 +11,8 @@ bot(
   },
   async (message, match) => {
     if (!match) return await message.sendMessage("_Send a plugin url_");
-    for (let Url of getUrl(match)) {
+    let urls = match.match(/\bhttps?:\/\/\S+/gi);
+    for (let Url of urls) {
       try {
         var url = new URL(Url);
       } catch {
