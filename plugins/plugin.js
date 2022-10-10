@@ -1,6 +1,8 @@
 const { bot, getUrl, PluginDB, setPlugin } = require("../lib/");
 const got = require("got");
-const fs = require("fs");
+const axios = require('axios');
+const fs = require('fs');
+const { format } = require('util')
 
 bot(
   {
@@ -10,46 +12,49 @@ bot(
     type: "user"
   },
   async (message, match) => {
-    if (!match) return await message.sendMessage("_Send a plugin url_");
-    let urls = match.match(/\bhttps?:\/\/\S+/gi);
-    for (let Url of urls) {
+    match = match || message.reply_message.text
+    if (!match || !/\bhttps?:\/\/\S+/gi.test(match)) return await message.reply('_Need a URL!\n Example:_ .install https://gist.git....')
+    let links = match.match(/\bhttps?:\/\/\S+/gi);
+    for (let link of links) {
       try {
-        var url = new URL(Url);
+        var url = new URL(link);
       } catch {
-        return await message.sendMessage("_Invalid Url_");
+        return await message.reply("_Invalid url!_");
       }
 
       if (url.host === "gist.github.com") {
-        url.host = "gist.githubusercontent.com";
-        url = url.toString() + "/raw";
+          url.host = "gist.githubusercontent.com";
+          url = url.toString() + "/raw"
       } else {
-        url = url.toString();
+          url = url.toString()
       }
-      var plugin_name;
-      var response = await got(url);
-      if (response.statusCode == 200) {
-        var bots = response.body
-          .match(/(?<=pattern:)(.*)(?=\?(.*))/g)
-          .map((a) => a.trim().replace(/"|'|`/, ""));
-        plugin_name =
-          bots[0] ||
-          plugin_name[1] ||
-          "__" + Math.random().toString(36).substring(8);
 
-        fs.writeFileSync("./plugins/" + plugin_name + ".js", response.body);
-        try {
-          require("./" + plugin_name);
-        } catch (e) {
-          fs.unlinkSync("/root/Alexa/plugins/" + plugin_name + ".js");
-          return await message.sendMessage("Invalid Plugin\n ```" + e + "```");
-        }
-
-        await setPlugin(url, plugin_name);
-
-        await message.sendMessage(
-          `_New plugin installed : ${bots.join(",")}_`
-        );
+      try {
+        var response = await axios(url + "?timestamp=" + new Date());
+      } catch {
+        return await message.reply("_Invalid url!_")
       }
+
+      let plugin_name = /pattern: ["'](.*)["'],/g.exec(response.data)
+      var plugin_name_temp = response.data.match(/pattern: ["'](.*)["'],/g) ? response.data.match(/pattern: ["'](.*)["'],/g).map(e => e.replace("pattern", "").replace(/[^a-zA-Z]/g, "")) : "temp"
+
+      try {
+        plugin_name = plugin_name[1].split(" ")[0]
+      } catch {
+        return await message.reply("_Invalid plugin. No plugin name found!_")
+      }
+
+      fs.writeFileSync("./plugins/" + plugin_name + ".js", response.data);
+
+      try {
+        require("./" + plugin_name);
+      } catch (e) {
+        fs.unlinkSync("/root/Alexa/plugins/" + plugin_name + ".js")
+        return await message.reply("_Error in plugin!_\n" + format(e));
+      }
+
+      await setPlugin(url, plugin_name);
+      await message.reply("_Installed: " + plugin_name_temp.join(", ") + " ✅_");
     }
   }
 );
