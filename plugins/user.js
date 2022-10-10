@@ -1,4 +1,4 @@
-const { bot } = require("../lib");
+const { bot } = require("../lib/");
 
 bot(
   {
@@ -99,7 +99,7 @@ bot(
     const reactionMessage = {
       react: {
           text: match,
-          key: message.key
+          key: message.reply_message.key
        }
     }
    await message.client.sendMessage(message.jid, reactionMessage)
