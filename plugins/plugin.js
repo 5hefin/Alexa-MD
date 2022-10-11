@@ -1,5 +1,6 @@
 const {
   bot,
+  isUrl,
   PluginDB,
   setPlugin,
   getPlugin,
@@ -24,6 +25,10 @@ bot(
     let msg = '';
     plugins.map((plugin) => { msg += '*' + plugin.dataValues.name + '* : ' + plugin.dataValues.url + '\n\n' });
     return await message.reply(msg);
+    let isurl = isUrl(match);
+    if (!isurl) {
+    const { url } = await getPlugin(match)
+    if (url) return await message.reply(url) }
     }
     let links = match.match(/\bhttps?:\/\/\S+/gi);
     for (let link of links) {
