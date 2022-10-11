@@ -124,7 +124,7 @@ bot(
 
 bot(
   {
-    pattern: "unmute",
+    pattern: "unmute ?(.*)",
     fromMe: true,
     desc: "unmute group",
     type: "group",
@@ -136,4 +136,24 @@ bot(
     await message.reply("_Unmuting_");
     return await client.groupSettingUpdate(message.jid, "not_announcement");
   }
+);
+
+bot(
+  {
+    pattern: "poll ?(.*)",
+    fromMe: true,
+    desc: "create poll",
+    type: "group",
+  },
+  async (message, match) => {
+    const poll = match.split(',')
+    if (poll.length < 3) return await message.send("*Example : question,option1,option2,...*")
+    const namee = poll[0]
+    const options = []
+    for (let i = 1; i < poll.length; i++) options.push({ optionName: poll[i] })
+    await message.client.relayMessage(message.jid, { pollCreationMessage: { name: namee, options, selectableOptionsCount: options.length, },
+    },
+   {},
+  )
+ }
 );
