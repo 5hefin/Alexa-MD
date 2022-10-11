@@ -31,7 +31,7 @@ bot(
     const getplugin = await getPlugin(match);
     if (!getplugin) return await message.reply("_Plugins not installed_");
     let snkl = "";
-    getplugin.map(({ name }) => { snkl += url })
+    getplugin.map(({ url }) => { snkl += url })
     return await message.reply(snkl);
     }
     for (let link of links) {
