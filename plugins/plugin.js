@@ -1,6 +1,5 @@
 const {
   bot,
-  isUrl,
   PluginDB,
   setPlugin,
   getPlugin,
@@ -14,24 +13,24 @@ bot(
     pattern: "plugin ?(.*)",
     fromMe: true,
     desc: "Installs External plugins",
-    type: "user"
+    type: "user",
   },
   async (message, match) => {
     match = match || message.reply_message.text
-    if (!match && match !== "list") return await message.send("_Example :*\nplugin url\nplugin list_")
-    if (match == 'list') {
+    if (!match && match !== "list") return await message.reply("_Example :_\nplugin url\nplugin list")
+    if (match == "list") {
     const plugins = await getPlugin();
     if (!plugins) return await message.reply("_Plugins not installed_");
-    let msg = '';
-    plugins.map((plugin) => { msg += '*' + plugin.dataValues.name + '* : ' + plugin.dataValues.url + '\n\n' });
+    let msg = "";
+    plugins.map(({ name, url }) => { msg += `*${name}* : ${url}\n` })
     return await message.reply(msg);
     }
     let links = match.match(/\bhttps?:\/\/\S+/gi);
     if (!links) {
     const getplugin = await getPlugin(match);
     if (!getplugin) return await message.reply("_Plugins not installed_");
-    let snkl = '';
-    getplugin.map((plugin) => { snkl += plugin.dataValues.url });
+    let snkl = "";
+    getplugin.map(({ name }) => { snkl += `${url}` })
     return await message.reply(snkl);
     }
     for (let link of links) {
@@ -73,19 +72,21 @@ bot(
 
 bot(
   {
-    pattern: "remove(?: |$)(.*)",
+    pattern: "remove ?(.*)",
     fromMe: true,
     desc: "Remove external plugins",
-    type: 'user'
+    type: "user",
   },
   async (message, match) => {
-    if (!match) return await message.sendMessage("_Need a plugin name_");
-    var plugin = await PluginDB.findAll({ where: { name: match } });
-    if (plugin.length < 1) { return await message.sendMessage("_Plugin not found_"); } else {
-    await plugin[0].destroy();
-    delete require.cache[require.resolve("./" + match + ".js")];
-    fs.unlinkSync("./plugins/" + match + ".js");
-    await message.sendMessage(`Plugin ${match} deleted`);
+    if (!match) return await message.reply("_Example :_\nremove emoji\nremove all")
+    if (match == "all") { 
+      await delPlugin()
+      return await message.send("_All plugins deleted Successfully_");
     }
+    const isDeleted = await delPlugin(match)
+    if (!isDeleted) return await message.reply(`_Plugin ${match} not found_`);
+    delete require.cache[require.resolve("./" + match + ".js")]
+    fs.unlinkSync("./plugins/" + match + ".js");
+    await message.reply(`Plugin ${match} deleted`);
   }
 );
