@@ -25,16 +25,17 @@ bot(
     let msg = '';
     plugins.map((plugin) => { msg += '*' + plugin.dataValues.name + '* : ' + plugin.dataValues.url + '\n\n' });
     return await message.reply(msg);
+    }
     let isurl = isUrl(match);
     if (!isurl) {
-    const splugin = await getPlugin(match);
-    if (!splugin) return await message.reply("_Plugins not installed_");
+    const getplugin = await getPlugin(match);
+    if (!getplugin) return await message.reply("_Plugins not installed_");
     let snkl = '';
-    splugin.map((plugin) => { msg += plugin.dataValues.url });
-    return await message.reply(snkl); }
+    getplugin.map((plugin) => { msg += plugin.dataValues.url });
+    return await message.reply(snkl);
     }
-    let links = match.match(/\bhttps?:\/\/\S+/gi);
-    for (let link of links) {
+    if (!isurl) return await message.reply("_Invalid url!_")
+    for (let link of isurl) {
     try {
       var url = new URL(link);
     } catch {
