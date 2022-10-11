@@ -3,6 +3,7 @@ const {
   PluginDB,
   setPlugin,
   getPlugin,
+  delPlugin,
 } = require("../lib/");
 const fs = require("fs");
 const got = require("got");
@@ -30,7 +31,7 @@ bot(
     const getplugin = await getPlugin(match);
     if (!getplugin) return await message.reply("_Plugins not installed_");
     let snkl = "";
-    getplugin.map(({ name }) => { snkl += `${url}` })
+    getplugin.map(({ name }) => { snkl += url })
     return await message.reply(snkl);
     }
     for (let link of links) {
