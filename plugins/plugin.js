@@ -27,8 +27,11 @@ bot(
     return await message.reply(msg);
     let isurl = isUrl(match);
     if (!isurl) {
-    const { url } = await getPlugin(match)
-    if (url) return await message.reply(url) }
+    const splugin = await getPlugin(match);
+    if (!splugin) return await message.reply("_Plugins not installed_");
+    let snkl = '';
+    splugin.map((plugin) => { msg += plugin.dataValues.url });
+    return await message.reply(snkl); }
     }
     let links = match.match(/\bhttps?:\/\/\S+/gi);
     for (let link of links) {
