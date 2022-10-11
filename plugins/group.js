@@ -64,7 +64,7 @@ bot(
 bot(
   {
     pattern: "demote ?(.*)",
-    fromMe: isPublic,
+    fromMe: true,
     desc: "demote a member",
     type: "group",
   },
