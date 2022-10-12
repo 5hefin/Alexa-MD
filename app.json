@@ -28,6 +28,11 @@
       "description": "heroku account api key, https://dashboard.heroku.com/account",
       "required": true
     },
+    "ALWAYS_ONLINE": {
+      "description": "show bot number last seen as online",
+      "required": false,
+      "value": "false"
+    },
     "LOG_MSG": {
       "description": "show whatsapp msgs in log",
       "required": false,
