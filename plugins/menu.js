@@ -2,9 +2,8 @@ const {
   bot,
   commands,
   sendMenu,
+  isPublic,
 } = require("../lib/");
-const { MODE } = require("../config");
-var isPublic = MODE == 'public' ? false : true
 
 bot(
   {

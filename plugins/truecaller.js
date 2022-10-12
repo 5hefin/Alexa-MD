@@ -1,9 +1,8 @@
 const {
   bot,
+  isPublic,
   trueCaller
 } = require("../lib");
-const { MODE } = require("../config");
-var isPublic = MODE == 'public' ? false : true
 
 bot(
   {

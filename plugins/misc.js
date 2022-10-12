@@ -1,27 +1,4 @@
-const { bot } = require("../lib/");
-const { MODE } = require("../config");
-var isPublic = MODE == 'public' ? false : true
-
-/*
-bot(
-  {
-    pattern: "react ?(.*)",
-    fromMe: true,
-    desc: "React to msg.",
-    type: "misc",
-  },
-  async (message, match) => {
-    if (!match || !message.reply_message) return await message.reply("_Example : react ❣_");
-    const reactionMessage = {
-      react: {
-        text: match,
-        key: message.reply_message.key
-      }
-    }
-    await message.sendMessage(reactionMessage);
-  }
-);
-*/
+const { bot, isPublic } = require("../lib/");
 
 bot(
   {

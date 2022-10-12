@@ -1,6 +1,4 @@
-const { bot, sendAlive }  = require("../lib");
-const { MODE } = require("../config");
-var isPublic = MODE == 'public' ? false : true
+const { bot, sendAlive, isPublic }  = require("../lib");
 
 bot(
   {

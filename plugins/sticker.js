@@ -1,11 +1,10 @@
 const {
   bot,
+  isPublic,
 } = require("../lib/");
 const {
-  STICKER_PACKNAME,
-  MODE
+  STICKER_PACKNAME
 } = require("../config");
-var isPublic = MODE == 'public' ? false : true
 
 bot(
   {
