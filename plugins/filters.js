@@ -9,8 +9,8 @@ bot(
   {
     pattern: "filter ?(.*)",
     fromMe: true,
-    desc: "filter in groups",
-    type: "group",
+    desc: "Add filters in chat",
+    type: "user",
   },
   async (message, match) => {
     match = match.match(/[\'\"](.*?)[\'\"]/gms)
@@ -35,10 +35,9 @@ bot(
     pattern: "stop ?(.*)",
     fromMe: true,
     desc: "Delete filters in chat",
-    type: "group",
+    type: "user",
   },
   async (message, match) => {
-    if (!message.isGroup) return await message.reply("_This cmd is for groups_");
     if (!match) return await message.send(`*Example : .stop hi*`)
     const isDel = await deleteFilter(message.jid, match)
     if (!isDel) return await message.reply(`_${match} not found in filters_`)
