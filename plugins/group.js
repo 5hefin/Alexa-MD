@@ -159,3 +159,35 @@ bot(
   )
  }
 );
+
+bot(
+  {
+    pattern: "tag ?(.*)",
+    fromMe: true,
+    desc: "tag participants in the group",
+    type: "group",
+  },
+  async (message, match, client) => {
+    const groupMetadata = message.isGroup ? await client.groupMetadata(m.chat).catch(e => {}) : ''
+    const participants = message.isGroup ? await groupMetadata.participants : ''
+    if (match == "all") {
+    let msg = "";
+    let count = 1
+    for (let participant of participants) {
+    msg += `${count++} @${participant.id.split('@')[0]}\n`
+    }
+    return await message.client.sendMessage(message.chat, {text : msg, mentions: participants.map(a => a.id)})
+    } else if (match == 'admin' || match == 'admins') {
+    let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
+    let msg = "";
+    let count = 1
+    for (let admin of admins) {
+    msg += `${count++} @${admin.split('@')[0]}\n`
+    }
+    return await message.reply(msg, { mentions: parseJid(msg)})
+    }
+    if (mtach) return await message.reply(match || message.reply_message.text, {mentions: participants.map(a => a.id) })
+    if (!message.reply_message) return await message.reply('_Example : \ntag all\ntag admin\ntag text\nReply to a message_')
+    await client.forwardMessage(message.chat, m.quoted_message, {contextInfo: { mentionedJid: participants.map(a => a.id)}})
+  }
+);
