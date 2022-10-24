@@ -62,6 +62,16 @@
       "description": "bot language.",
       "required": false,
       "value": "english"
+    },
+    "READ_COMMAND": {
+      "description": "Read all commands",
+      "required": false,
+      "value": "true"
+    },
+    "ERROR_MESSAGE": {
+      "description": "get error alert",
+      "required": false,
+      "value": "true"
     }
   },
   "addons": [
