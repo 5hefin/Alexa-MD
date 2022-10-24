@@ -14,10 +14,11 @@ module.exports = {
     HEROKU_API_KEY: process.env.HEROKU_API_KEY,
     BOT_INFO: process.env.BOT_INFO || '𝛥𝐿𝛯𝛸𝛥,𝑆𝛨𝛯𝐹𝛪𝛮,919567489404,https://i.imgur.com/daBdQPW.jpeg',
     STICKER_PACKNAME: process.env.STICKER_PACKNAME || 'Alexa,Shefin',
-    READ_MSG: process.env.READ_MSG || 'true', 
+    READ_CMD: process.env.READ_COMMAND || 'true', 
     LOG_MSG: toBool(process.env.LOG_MSG),
     ALWAYS_ONLINE: toBool(process.env.ALWAYS_ONLINE),
     LANG: (process.env.LANGUAGE || 'english').toLowerCase(),
     WARN_LIMIT: process.env.WARN_LIMIT || '3',
     DIS_BOT: process.env.DISABLE_BOT || 'null',
+    ERROR_MESSAGE: toBool(process.env.ERROR_MESSAGE),
 };
