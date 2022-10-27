@@ -1,4 +1,4 @@
-const { bot, upload, isPublic } = require("../lib/");
+/*const { bot, upload, isPublic } = require("../lib/");
 
 bot(
   {
@@ -14,3 +14,4 @@ bot(
     await message.reply(res.url)
   }
 );
+*/
