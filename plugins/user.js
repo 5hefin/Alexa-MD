@@ -7,7 +7,7 @@ bot(
     desc: "Set profile picture",
     type: "user",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (!message.reply_message.image) return await message.reply("_Reply to a photo_");
     let media = await message.reply_message.download();
     await message.setPP(message.user, media);

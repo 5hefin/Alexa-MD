@@ -33,7 +33,7 @@ bot(
     desc: "Forwards The View once messsage",
     type: "tool",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (message.reply_message.type !== "view_once") return await message.reply("_Not a View Once_");
     let media = await message.reply_message.download();
     return await message.sendFile(media);
@@ -47,7 +47,7 @@ bot(
     desc: "Changes sticker to Photo",
     type: "converter",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (message.reply_message.mtype !== "stickerMessage") return await message.reply("_Not a sticker_");
     let media = await message.reply_message.download();
     return await message.sendMessage(media, {}, "image");
@@ -61,7 +61,7 @@ bot(
     desc: "Changes sticker to Video",
     type: "converter",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (message.reply_message.mtype !== "stickerMessage") return await message.reply("_Not a sticker_");
     let media = await message.reply_message.download();
     let webp = await webp2mp4(media);
@@ -76,7 +76,7 @@ bot(
     desc: "converts video/voice to mp3",
     type: "converter",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     let media = await message.reply_message.download();
     media = await toAudio(media, "mp3");
     return await message.sendMessage(media, { mimetype: "audio/mpeg" }, "audio");

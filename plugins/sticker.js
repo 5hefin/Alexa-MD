@@ -13,7 +13,7 @@ bot(
     desc: "Converts Photo or video to sticker",
     type: "media",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (!message.reply_message || (!message.reply_message.video && !message.reply_message.image)) return await message.reply("_Reply to image/video_")
     let media = await message.reply_message.download();
     let [p, a] = match.split(",");
@@ -29,7 +29,7 @@ bot(
     desc: "Changes sticker pack & author info",
     type: "media",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (!message.reply_message || !message.reply_message.sticker) return await message.reply("_Reply to sticker_");
     let media = await message.reply_message.download();
     let [p, a] = match.split(",");
