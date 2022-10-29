@@ -11,7 +11,7 @@
    "dependencies": {
       "@adiwajshing/baileys": "git+https://github.com/5hefin/Baileys.git",
       "@adiwajshing/keyed-db": "^0.2.4",
-      "alexa-bot": "2.4.8",
+      "alexa-bot": "2.4.9",
       "@hapi/boom": "10.0.0",
       "acrcloud": "^1.4.0",
       "wa-sticker-formatter": "^4.3.2",
