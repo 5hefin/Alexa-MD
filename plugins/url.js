@@ -1,4 +1,4 @@
-/*const { bot, upload, isPublic } = require("../lib/");
+const { bot, upload, isPublic } = require("../lib/");
 
 bot(
   {
@@ -8,10 +8,9 @@ bot(
     type: "media",
   },
   async (message, match) => {
-    if (message.reply_message.image || message.reply_message.video) return await message.reply("_Reply to image|video_");
-    var shefin = await message.reply_message.downloadMediaMessage();
-    var res = await upload(shefin);
+    if (!message.reply_message.image || message.reply_message.video) return await message.reply("_Reply to image|video_");
+    var media = await message.reply_message.downloadMediaMessage();
+    var res = await upload(media);
     await message.reply(res.url)
   }
 );
-*/
