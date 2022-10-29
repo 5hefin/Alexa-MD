@@ -15,10 +15,10 @@ bot(
   },
   async (message, match, m) => {
     if (!message.reply_message || (!message.reply_message.video && !message.reply_message.image)) return await message.reply("_Reply to image/video_")
-    let buff = await m.quoted.download();
+    let media = await message.reply_message.download();
     let [p, a] = match.split(",");
     let [s, n] = STICKER_PACKNAME.split(",");
-    await message.sendMessage(buff, { packname: p || s, author: a || n }, "sticker");
+    await message.sendMessage(media, { packname: p || s, author: a || n }, "sticker");
   }
 );
 
@@ -31,9 +31,9 @@ bot(
   },
   async (message, match, m) => {
     if (!message.reply_message || !message.reply_message.sticker) return await message.reply("_Reply to sticker_");
-    let buff = await m.quoted.download();
+    let media = await message.reply_message.download();
     let [p, a] = match.split(",");
     let [s, n] = STICKER_PACKNAME.split(",");
-    await message.sendMessage(buff, { packname: p || s, author: a || n }, "sticker");
+    await message.sendMessage(media, { packname: p || s, author: a || n }, "sticker");
   }
 );

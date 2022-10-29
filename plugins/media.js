@@ -1,15 +1,10 @@
 const { 
-  bot,
-  webp2mp4,
-  isUrl,
-  gimage,
-  yta,
-  ytIdRegex,
-  ytv,
-  toAudio,
-  isPublic,
+   bot,
+   webp2mp4,
+   gimage,
+   toAudio,
+   isPublic,
 } = require("../lib/");
-const { search } = require("yt-search");
 
 bot(
   {
@@ -39,10 +34,9 @@ bot(
     type: "tool",
   },
   async (message, match, m) => {
-    if (message.reply_message.type !== "view_once")
-      return await message.reply("_Not a View Once_");
-    let buff = await m.quoted.download();
-    return await message.sendFile(buff);
+    if (message.reply_message.type !== "view_once") return await message.reply("_Not a View Once_");
+    let media = await message.reply_message.download();
+    return await message.sendFile(media);
   }
 );
 
@@ -54,10 +48,9 @@ bot(
     type: "converter",
   },
   async (message, match, m) => {
-    if (message.reply_message.mtype !== "stickerMessage")
-      return await message.reply("_Not a sticker_");
-    let buff = await m.quoted.download();
-    return await message.sendMessage(buff, {}, "image");
+    if (message.reply_message.mtype !== "stickerMessage") return await message.reply("_Not a sticker_");
+    let media = await message.reply_message.download();
+    return await message.sendMessage(media, {}, "image");
   }
 );
 
@@ -69,57 +62,10 @@ bot(
     type: "converter",
   },
   async (message, match, m) => {
-    if (message.reply_message.mtype !== "stickerMessage")
-      return await message.reply("_Not a sticker_");
-    let buff = await m.quoted.download();
-    let buffer = await webp2mp4(buff);
-    return await message.sendMessage(buffer, {}, "video");
-  }
-);
-
-bot(
-  {
-    pattern: "song ?(.*)",
-    fromMe: isPublic,
-    desc: "Downloads Song",
-    type: "download",
-  },
-  async (message, match) => {
-    match = match || message.reply_message.text;
-    if (ytIdRegex.test(match)) {
-      yta(match.trim()).then(({ dl_link, title }) => {
-        message.sendFromUrl(dl_link, { filename: title });
-      });
-    }
-    search(match + "song").then(async ({ all }) => {
-      await message.reply(`_Downloading ${all[0].title}_`);
-      yta(all[0].url).then(({ dl_link, title }) => {
-        message.sendFromUrl(dl_link, { filename: title, quoted: message });
-      });
-    });
-  }
-);
-
-bot(
-  {
-    pattern: "video ?(.*)",
-    fromMe: isPublic,
-    desc: "Downloads video",
-    type: "download",
-  },
-  async (message, match) => {
-    match = match || message.reply_message.text;
-    if (ytIdRegex.test(match)) {
-      ytv(match.trim()).then(({ dl_link, title }) => {
-        message.sendFromUrl(dl_link, { filename: title });
-      });
-    }
-    search(match + "song").then(async ({ all }) => {
-      await message.reply(`_Downloading ${all[0].title}_`);
-      ytv(all[0].url).then(({ dl_link, title }) => {
-        message.sendFromUrl(dl_link, { filename: title, quoted: message });
-      });
-    });
+    if (message.reply_message.mtype !== "stickerMessage") return await message.reply("_Not a sticker_");
+    let media = await message.reply_message.download();
+    let webp = await webp2mp4(media);
+    return await message.sendMessage(webp, {}, "video");
   }
 );
 
@@ -131,8 +77,8 @@ bot(
     type: "converter",
   },
   async (message, match, m) => {
-    let buff = await m.quoted.download();
-    buff = await toAudio(buff, "mp3");
-    return await message.sendMessage(buff, { mimetype: "audio/mpeg" }, "audio");
+    let media = await message.reply_message.download();
+    media = await toAudio(media, "mp3");
+    return await message.sendMessage(media, { mimetype: "audio/mpeg" }, "audio");
   }
 );

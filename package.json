@@ -1,6 +1,6 @@
 {
    "name": "alexa-md",
-   "version": "1.0.0",
+   "version": "1.0.5",
    "description": "Alexa MD - Simple whatsapp Multi Device bot based on @adiwajshing/baileys.",
    "main": "index.js",
    "scripts": {
