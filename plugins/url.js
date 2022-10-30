@@ -23,7 +23,7 @@ bot(
 
     else if (message.reply_message.image || message.reply_message.video) {
       try {
-        var media = await message.reply_message.downloadMediaMessage();
+        var media = await message.reply_message.download();
         var res = await upload(media);
         await message.reply(res.link)
       } catch (e) {
