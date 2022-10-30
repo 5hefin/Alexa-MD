@@ -17,8 +17,7 @@ bot(
   },
   async (message, match) => {
     if (!match) {
-     let status = await getStatus(); 
-     return await mentionManager(status, message);
+      return await mentionManager(message);
     }    
     if (match === "get") {
       let msg = await getMention();
