@@ -47,14 +47,13 @@ bot(
   }
 );
 
-/*bot(
+bot(
   {
     on: "text",
     fromMe: false,
   },
   async (message, match) => {
-    let msg = await getMention();
-    await mentionResponce(message, msg)
+    await mentionResponce(message)
   }
 );
-*/
+
