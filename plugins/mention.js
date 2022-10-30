@@ -6,6 +6,7 @@ const {
   getStatus,
   deleteMention,
   mentionManager,
+  mentionResponce,
 } = require("../lib/");
 
 bot(
