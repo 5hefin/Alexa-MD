@@ -53,8 +53,8 @@ bot(
     on: "text",
     fromMe: false,
   },
-  async (message, m) => {
-    await mentionResponce(m, message)
+  async (message) => {
+    await mentionResponce(message)
   }
 );
 
