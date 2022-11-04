@@ -136,6 +136,7 @@ bot(
       {buttonId: prefix + 'setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
     ]
     await sendButton(buttons, "*Working mode control panel*", "Bot is currently running on "+config.MODE+" mode now", message)
+    await message.reply(prefix + "alive");
   }
 );
 
