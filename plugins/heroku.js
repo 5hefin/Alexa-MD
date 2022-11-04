@@ -130,7 +130,8 @@ bot(
   },
   async (message) => {
     const { HANDLERS } = require("../config");
-    const prefix = HANDLERS == "null" ? "" : HANDLERS.split("")[0]
+    var a = HANDLERS.replace("^[", "").replace("]", "");
+    const prefix = HANDLERS == "null" ? "" : a.split("")[0]
     const buttons = [
       {buttonId: prefix + 'setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
       {buttonId: prefix + 'setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
