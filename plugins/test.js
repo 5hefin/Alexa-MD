@@ -1,10 +1,8 @@
 const {
+    bot,
     isAdmin,
-    mentionjid
-} = require('../lib/admin');
-const {
-    bot
-} = require('../lib')
+    parseJid
+} = require('../lib/');
 
 bot({
     pattern: 'promote ?(.*)',
@@ -18,7 +16,7 @@ bot({
     var admin = await isAdmin(message);
     if (!admin) return await message.reply("not edmin")
     await message.client.sendMessage(message.jid, {
-        text: mentionjid(user) + "Promote",
+        text: parseJid(user) + "Promote",
         mentions: [user]
     })
     await message.client.groupParticipantsUpdate(message.jid, [user], "promote")
