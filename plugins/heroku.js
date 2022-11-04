@@ -130,7 +130,7 @@ bot(
   },
   async (message) => {
     const { HANDLERS } = require("../config");
-    var a = HANDLERS.replace("^[", "").replace("]", "");
+    var a = HANDLERS.replace("[", "").replace("]", "");
     const prefix = HANDLERS == "null" ? "" : a.split("")[0]
     const buttons = [
       {buttonId: prefix + 'setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
