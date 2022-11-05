@@ -131,14 +131,17 @@ bot(
   async (message) => {
     const { HANDLERS } = require("../config");
     var a = HANDLERS.replace("[", "").replace("]", "");
-    const prefix = HANDLERS == "null" ? " " : a.split("")[0]
-    const s = HANDLERS == "null" ? "Hlo" : a.split("")[0]   
+    var g;
+    if (s == "null") g = "";
+    else g = a.split("")[0]
+    // const prefix = HANDLERS == "null" ? " " : a.split("")[0]
+    // const s = HANDLERS == "null" ? "Hlo" : a.split("")[0]   
     const buttons = [
-      {buttonId: prefix + 'setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
-      {buttonId: prefix + 'setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
+      {buttonId: g+'setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
+      {buttonId: g+'setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
     ]
     await sendButton(buttons, "*Working mode control panel*", "Bot is currently running on "+config.MODE+" mode now", message)
-    await message.reply(prefix + "alive" + s);
+    await message.reply(g+"alive");
   }
 );
 
