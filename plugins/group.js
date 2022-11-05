@@ -1,7 +1,7 @@
 const {
     bot,
     isAdmin,
-    parsedJid
+    parseJid
 } = require("../lib");
 const config = require("../config");
 
@@ -17,7 +17,7 @@ bot(
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to add");
     if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
-    let jid = parsedJid(match);
+    let jid = parseJid(match);
     await message.add(jid);
     return await message.reply(`@${jid[0].split("@")[0]} added`, { mentions: jid, });
   }
@@ -35,7 +35,7 @@ bot(
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to kick");
     if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
-    let jid = parsedJid(match);
+    let jid = parseJid(match);
     await message.kick(jid);
     return await message.reply(`@${jid[0].split("@")[0]} kicked`, { mentions: jid, });
   }
@@ -53,7 +53,7 @@ bot(
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to promote_");
     if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");      
-    let jid = parsedJid(match);
+    let jid = parseJid(match);
     await client.groupParticipantsUpdate(message.jid, jid, "promote")
     return await message.reply(`@${jid[0].split("@")[0]} promoted as admin`, { mentions: jid, });
   }
@@ -71,7 +71,7 @@ bot(
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to demote");
     if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
-    let jid = parsedJid(match);
+    let jid = parseJid(match);
     await client.groupParticipantsUpdate(message.jid, jid, "demote");
     return await message.reply(`@${jid[0].split("@")[0]} demoted from admin`, { mentions: jid, });
   }
