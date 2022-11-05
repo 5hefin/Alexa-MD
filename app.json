@@ -48,6 +48,11 @@
       "required": true,
       "value": "."
     },
+    "AUDIO_DATA": {
+      "description": "audio package name",
+      "required": true,
+      "value": "𝛥𝐿𝛯𝛸𝛥,𝑆𝛨𝛯𝐹𝛪𝛮,https://i.imgur.com/daBdQPW.jpeg"
+    },
     "STICKER_PACKNAME": {
       "description": "sticker pack info",
       "required": false,
