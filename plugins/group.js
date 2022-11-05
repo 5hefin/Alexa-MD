@@ -48,13 +48,13 @@ bot(
     desc: "promote a member",
     type: "group",
   },
-  async (message, match) => {
+  async (message, match, client) => {
     if (!message.isGroup) return await message.reply("_This bot is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to promote_");
     if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");      
     let jid = parsedJid(match);
-    await message.promote(jid);
+    await client.groupParticipantsUpdate(message.jid, jid, "promote")
     return await message.reply(`@${jid[0].split("@")[0]} promoted as admin`, { mentions: jid, });
   }
 );
@@ -66,13 +66,13 @@ bot(
     desc: "demote a member",
     type: "group",
   },
-  async (message, match) => {
+  async (message, match, client) => {
     if (!message.isGroup) return await message.reply("_This bot is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to demote");
     if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
     let jid = parsedJid(match);
-    await message.demote(jid);
+    await client.groupParticipantsUpdate(message.jid, jid, "demote");
     return await message.reply(`@${jid[0].split("@")[0]} demoted from admin`, { mentions: jid, });
   }
 );
