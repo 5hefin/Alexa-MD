@@ -2,7 +2,7 @@ const { bot } = require("../lib/");
 
 bot(
   {
-    pattern: "setpp ?(.*)",
+    pattern: "pp ?(.*)",
     fromMe: true,
     desc: "Set profile picture",
     type: "user",
