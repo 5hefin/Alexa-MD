@@ -119,7 +119,7 @@ bot(
     type: "whatsapp",
   },
   async (message, match) => {
-    await message.pin(message.jid);
+    await message.client.chatModify({pin: true}, message.jid)
     return await message.reply("_Pined_");
   }
 );
@@ -132,7 +132,7 @@ bot(
     type: "whatsapp",
   },
   async (message, match) => {
-    await message.unpin(message.jid);
+    await message.client.chatModify({pin: false}, message.jid)
     return await message.reply("_Unpined_");
   }
 );
