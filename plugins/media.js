@@ -77,14 +77,8 @@ bot(
     type: "converter",
   },
   async (message, match) => {
-    const {addAudioMetaData} = require("../lib/uploader");
-    const {AUDIO_DATA} = require ("../config");
     let media = await message.reply_message.download();
-    var [name, artist, url] = AUDIO_DATA == 'false' ? [] : AUDIO_DATA.split(/[,;]/)
-    name = name || ''
-    artist = artist || ''
-    url = url || ''
-    let writer = await addAudioMetaData(await toAudio(media), url, name, artist, "Alexa Official");
-    return await message.sendMessage(writer, { mimetype: "audio/mpeg" }, "audio");
+    media = await toAudio(media, "mp3");
+    return await message.sendMessage(media, { mimetype: "audio/mpeg" }, "audio");
   }
 );
