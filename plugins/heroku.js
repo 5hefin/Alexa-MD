@@ -132,7 +132,7 @@ bot(
     const { HANDLERS } = require("../config");
     var a = HANDLERS.replace("[", "").replace("]", "");
     var g;
-    if (s == "null") g = "";
+    if (a == "null") g = "";
     else g = a.split("")[0]
     // const prefix = HANDLERS == "null" ? " " : a.split("")[0]
     // const s = HANDLERS == "null" ? "Hlo" : a.split("")[0]   
