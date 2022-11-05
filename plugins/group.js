@@ -16,8 +16,7 @@ bot(
     if (!message.isGroup) return await message.reply("_This bot is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to add");
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
+    if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
     let jid = parsedJid(match);
     await message.add(jid);
     return await message.reply(`@${jid[0].split("@")[0]} added`, { mentions: jid, });
@@ -35,8 +34,7 @@ bot(
     if (!message.isGroup) return await message.reply("_This bot is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to kick");
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
+    if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
     let jid = parsedJid(match);
     await message.kick(jid);
     return await message.reply(`@${jid[0].split("@")[0]} kicked`, { mentions: jid, });
@@ -54,8 +52,7 @@ bot(
     if (!message.isGroup) return await message.reply("_This bot is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to promote_");
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
+    if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");      
     let jid = parsedJid(match);
     await message.promote(jid);
     return await message.reply(`@${jid[0].split("@")[0]} promoted as admin`, { mentions: jid, });
@@ -73,8 +70,7 @@ bot(
     if (!message.isGroup) return await message.reply("_This bot is for groups_");
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to demote");
-    let isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_I'm not admin_");
+    if (!isAdmin(message.jid, message.user, message.client)) return await message.reply("_I'm not admin_");
     let jid = parsedJid(match);
     await message.demote(jid);
     return await message.reply(`@${jid[0].split("@")[0]} demoted from admin`, { mentions: jid, });
