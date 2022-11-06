@@ -138,3 +138,29 @@ bot(
     await message.reply("_Unpined_");
   }
 );
+
+bot(
+  {
+    pattern: "archive ?(.*)",
+    fromMe: true,
+    desc: "Archive a chat",
+    type: "whatsapp",
+  },
+  async (message, match) => {
+    await message.archiveChat(message.jid, true)
+    await message.reply("_Archived_")
+  }
+);
+
+bot(
+  {
+    pattern: "unarchive ?(.*)",
+    fromMe: true,
+    desc: "Unarchive a chat",
+    type: "whatsapp",
+  },
+  async (message, match) => {
+    await message.archiveChat(message.jid, false)
+    await message.reply("_Unarchived_")
+  }
+);
