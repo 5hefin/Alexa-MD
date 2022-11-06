@@ -10,7 +10,7 @@ bot(
   async (message, match) => {
     if (!message.reply_message.image) return await message.reply("_Reply to a photo_");
     let media = await message.reply_message.download();
-    await message.client.updateProfilePicture(message.jid, media)
+    await message.client.updateProfilePicture(message.jid, { url: media })
     return await message.reply("_Profile Picture Updated_");
   }
 );
