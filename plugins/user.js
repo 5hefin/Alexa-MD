@@ -107,7 +107,9 @@ bot(
     type: "user" ,
   },
   async (message, match) => {
-   await message.react(match, message.reply_message.key)
+   await message.react(
+     match, message.reply_message.key
+   );
   }
 );
 
@@ -119,8 +121,8 @@ bot(
     type: "whatsapp",
   },
   async (message, match) => {
-    await message.client.chatModify({pin: true}, message.jid)
-    return await message.reply("_Pined_");
+    await message.pinChat(message.jid, true)
+    await message.reply("_Pined_");
   }
 );
 
@@ -132,7 +134,7 @@ bot(
     type: "whatsapp",
   },
   async (message, match) => {
-    await message.client.chatModify({pin: false}, message.jid)
-    return await message.reply("_Unpined_");
+    await message.pinChat(message.jid, false)
+    await message.reply("_Unpined_");
   }
 );
