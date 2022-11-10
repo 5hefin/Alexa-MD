@@ -2,7 +2,7 @@ const { bot } = require("../lib/");
 
 bot(
   {
-    pattern: "pp ?(.*)",
+    pattern: "pp$",
     fromMe: true,
     desc: "Set profile picture",
     type: "user",
@@ -47,7 +47,7 @@ bot(
 
 bot(
   {
-    pattern: "block ?(.*)",
+    pattern: "block$",
     fromMe: true,
     desc: "Block a person",
     type: "user",
@@ -67,7 +67,7 @@ bot(
 
 bot(
   {
-    pattern: "unblock ?(.*)",
+    pattern: "unblock$",
     fromMe: true,
     desc: "Unblock a person",
     type: "user",
@@ -87,7 +87,7 @@ bot(
 
 bot(
   {
-    pattern: "jid",
+    pattern: "jid ?(.*)",
     fromMe: true,
     desc: "Give jid of chat/user",
     type: "user",
@@ -115,7 +115,7 @@ bot(
 
 bot(
   {
-    pattern: "pin ?(.*)",
+    pattern: "pin$",
     fromMe: true,
     desc: "Pin a chat",
     type: "whatsapp",
@@ -128,7 +128,7 @@ bot(
 
 bot(
   {
-    pattern: "unpin ?(.*)",
+    pattern: "unpin$",
     fromMe: true,
     desc: "Unpin a chat",
     type: "whatsapp",
@@ -141,7 +141,7 @@ bot(
 
 bot(
   {
-    pattern: "archive ?(.*)",
+    pattern: "archive$",
     fromMe: true,
     desc: "Archive a chat",
     type: "whatsapp",
@@ -154,7 +154,7 @@ bot(
 
 bot(
   {
-    pattern: "unarchive ?(.*)",
+    pattern: "unarchive$",
     fromMe: true,
     desc: "Unarchive a chat",
     type: "whatsapp",
