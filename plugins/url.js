@@ -11,7 +11,7 @@ bot(
   async (message, match) => {
     if (message.reply_message.audio) {
       try {
-        var media = await message.reply_message.downloadMediaMessage();
+        var media = await message.reply_message.download();
         ffmpeg(media).outputOptions(["-y", "-filter_complex", "[0:a]showvolume=f=1:b=4:w=720:h=68,format=yuv420p[vid]", "-map", "[vid]", "-map 0:a"]).save('output.mp4').on('end', async () => {
         var res = await upload('output.mp4');
         await message.reply(res.link);
