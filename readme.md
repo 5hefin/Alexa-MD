@@ -7,5 +7,3 @@
 3. If You don't have a account in [Heroku](https://signup.heroku.com/), Create a account.
 4. Click [FORK](https://github.com/5hefin/Alexa-MD/fork)
 5. Now [DEPLOY](https://heroku.com/deploy?template=https://github.com/5hefin/Alexa-MD)
-
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/NE-mrq?referralCode=2rNdxG)
