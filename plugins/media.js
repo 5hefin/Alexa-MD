@@ -4,6 +4,7 @@ const {
    gimage,
    toAudio,
    isPublic,
+   blackVideo,
 } = require("../lib/");
 
 bot(
@@ -80,5 +81,20 @@ bot(
     let media = await message.reply_message.download();
     media = await toAudio(media, "mp3");
     return await message.sendMessage(media, { mimetype: "audio/mpeg" }, "audio");
+  }
+);
+
+bot(
+  {
+    pattern: "black ?(.*)",
+    fromMe: isPublic,
+    desc: "converts audio to black video",
+    type: "converter",
+  },
+  async (message, match, m) => {
+    if (!message.reply_message || !message.reply_message.audio) return await message.sendMessage("_Reply to a audio!_")
+    let media = await message.reply_message.download();
+    let black_video = await blackVideo(media);
+    await message.sendMessage(black_video, { quoted: m }, "video");
   }
 );
