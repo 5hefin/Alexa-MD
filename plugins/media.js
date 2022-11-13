@@ -91,10 +91,10 @@ bot(
     desc: "converts audio to black video",
     type: "converter",
   },
-  async (message, match, m) => {
+  async (message, match) => {
     if (!message.reply_message || !message.reply_message.audio) return await message.sendMessage("_Reply to a audio!_")
     let media = await message.reply_message.download();
     let black_video = await blackVideo(media);
-    await message.sendMessage(black_video, { quoted: m }, "video");
+    await message.sendMessage(black_video, { quoted: message }, "video");
   }
 );
