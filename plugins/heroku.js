@@ -1,8 +1,8 @@
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const { bot, updateCheck, updateNow, secondsToHms, sendButton } = require('../lib');
+const { bot, updateCheck, updateNow, secondsToHms, sendButton, prefix } = require('../lib');
 const config = require('../config');
-const { SUDO } = require('../config');
+const { SUDO, MODE } = require('../config');
 const Heroku = require('heroku-client');
 const heroku = new Heroku({ token: config.HEROKU_API_KEY })
 const baseURI = '/apps/' + config.HEROKU_APP_NAME
@@ -129,19 +129,11 @@ bot(
     type: "heroku",
   },
   async (message) => {
-    const { HANDLERS } = require("../config");
-    var a = HANDLERS.replace("[", "").replace("]", "");
-    var g;
-    if (a == "null") g = "";
-    else g = a.split("")[0]
-    // const prefix = HANDLERS == "null" ? " " : a.split("")[0]
-    // const s = HANDLERS == "null" ? "Hlo" : a.split("")[0]   
     const buttons = [
-      {buttonId: g+'setvar MODE:public', buttonText: {displayText: 'Public'}, type: 1},
-      {buttonId: g+'setvar MODE:private', buttonText: {displayText: 'Private'}, type: 1}
+      {buttonId: prefix + "setvar MODE:public", buttonText: {displayText: "Public"}, type: 1},
+      {buttonId: prefix + "setvar MODE:private", buttonText: {displayText: "Private"}, type: 1}
     ]
-    await sendButton(buttons, "*Working mode control panel*", "Bot is currently running on "+config.MODE+" mode now", message)
-    await message.reply(g+"alive");
+    await sendButton(buttons, "Mode Manager", "Current Mode : "+MODE, message)
   }
 );
 
