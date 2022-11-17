@@ -1,4 +1,4 @@
-const { bot, sendAlive, isPublic }  = require("../lib");
+const { bot, aliveMessage, isPublic }  = require("../lib");
 
 bot(
   {
@@ -8,6 +8,6 @@ bot(
     type: "info"
   },
   async (message, match) => {
-    await sendAlive(message, match);
+    await aliveMessage(message, match);
   }
 );
