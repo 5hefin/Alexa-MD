@@ -31,10 +31,8 @@ bot(
       if (!user) return await message.reply("_Reply or Mention to a user_")
       const count = await setWarn(user, message.jid)
       if (count > WARN_LIMIT) {
-        const groupMetadata = await message.client.groupMetadata(message.jid)
-        const participants = await groupMetadata.participants
-        const isimAdmin = await isAdmin(participants, message.client.user.jid);
-        const isUserAdmin = await isAdmin(participants, user)
+        const isimAdmin = await isAdmin(message);
+        const isUserAdmin = await isAdmin(message, user)
         if (!isimAdmin) return await message.reply("_I'm not an admin_")
         if (isUserAdmin) return await message.reply("_Given user is an admin_")
         await message.client.sendMessage(message.jid, { text: `@${user.split("@")[0]}, *Kicked From The Group*,\n_Reached Max warning._`, mentions: [user] })
