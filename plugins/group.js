@@ -271,7 +271,7 @@ bot(
     if (message.reply_message && message.reply_message.image) {
     var img = await message.reply_message.download()
     await message.client.updateProfilePicture(message.jid, {url: img});
-    return await message.sendReply("_Successfully Profile Picture Updated_")
+    return await message.reply("_Successfully Profile Picture Updated_")
     }
   }
 );
