@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Click [SCAN](https://alexa-md-qr.herokuapp.com/) and scan QR through Whatsapp Linked Devices Option in Your whatsapp App.
+1. Click [SCAN](https://alexamd-qr.herokuapp.com/) and scan QR through Whatsapp Linked Devices Option in Your whatsapp App.
 2. You will get a session id in whatsapp, copy id only.
 3. If You don't have a account in [Heroku](https://signup.heroku.com/), Create a account.
 4. Click [FORK](https://github.com/5hefin/Alexa-MD/fork)
