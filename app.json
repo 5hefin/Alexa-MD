@@ -53,7 +53,7 @@
       "required": true,
       "value": "𝛥𝐿𝛯𝛸𝛥,𝑆𝛨𝛯𝐹𝛪𝛮,https://i.imgur.com/daBdQPW.jpeg"
     },
-    "STICKER_PACKNAME": {
+    "STICKER_DATA": {
       "description": "sticker pack info",
       "required": false,
       "value": "Alexa,Shefin"
@@ -63,10 +63,10 @@
       "required": true,
       "value": "𝛥𝐿𝛯𝛸𝛥,𝑆𝛨𝛯𝐹𝛪𝛮,919567489404,https://i.imgur.com/daBdQPW.jpeg"
     },
-    "LANGUAGE": {
-      "description": "bot language.",
+    "WARN_LIMIT": {
+      "description": "Maximum number of wanings to a person.",
       "required": false,
-      "value": "english"
+      "value": "3"
     },
     "READ_COMMAND": {
       "description": "Read all commands",
