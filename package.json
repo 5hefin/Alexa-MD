@@ -61,6 +61,7 @@
       "mongodb": "4.9.1",
       "imgur": "2.2.0",
       "aes256":"1.1.0",
-      "pastebin-js": "^1.0.6"
+      "pastebin-js": "^1.0.6",
+      "express": "latest"
    }
 }
