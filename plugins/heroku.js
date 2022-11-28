@@ -146,7 +146,16 @@ bot(
   },
   async (message, match) => {
     if (!match || match === "check") { return await updateCheck(message); }
-    else if (match === "now" || match === "start") { return await updateNow(message); }
+    else if (match === "now" || match === "start") {
+    if (config.HEROKU_API_KEY == "" && Config.HEROKU.APP_NAME == "") {
+    await git.reset("hard",["HEAD"])
+    await git.pull()
+    await message.reply("_Updated_")
+    await message.reply("_Rebooting..._")
+    return require("pm2").restart("index.js");
+    }
+    return await updateNow(message);
+    }
   }
 );
 
