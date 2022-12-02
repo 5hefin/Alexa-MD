@@ -56,7 +56,6 @@
       "yargs": "^17.2.1",
       "cookie": "^0.5.0",
       "qrcode-reader": "^1.0.4",
-      "canvas": "^2.10.1",
       "truecallerjs": "1.1.1",
       "mongodb": "4.9.1",
       "imgur": "2.2.0",
