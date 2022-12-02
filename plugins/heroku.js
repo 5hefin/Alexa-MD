@@ -1,4 +1,4 @@
-const simpleGit = require('simple-git');
+/*const simpleGit = require('simple-git');
 const git = simpleGit();
 const { bot, updateCheck, updateNow, secondsToHms, sendButton, prefix } = require('../lib');
 const config = require('../config');
@@ -206,3 +206,4 @@ bot(
     await message.reply('```' + `SUDO Numbers are : ${vars.SUDO}` + '```')
   }
 );
+*/
