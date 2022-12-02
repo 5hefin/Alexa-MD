@@ -1,9 +1,14 @@
 ## Alexa Multi Device
 
+Alexa MD - Simple whatsapp Multi Device whatsapp bot.
+
 ## Setup
 
 1. Click [SCAN](https://alexa-qr.onrender.com/) and scan QR through Whatsapp Linked Devices Option in Your whatsapp App.
 2. You will get a session id in whatsapp, copy id only.
-3. If You don't have a account in [Heroku](https://signup.heroku.com/), Create a account.
-4. Click [FORK](https://github.com/5hefin/Alexa-MD/fork)
-5. Now [Deploy](https://heroku.com/deploy?template=https://github.com/5hefin/Alexa-MD)
+
+## Deploy to Koyeb
+
+1. If You don't have a account in [Koyeb](https://app.koyeb.com/auth/signup), Create a account.
+2. Get [DATABASE_URL](https://github.com/5hefin/Alexa-MD/wiki/DATABASE_URL) and copy it
+3. Now [Deploy](https://alexa-web.vercel.app/deploy)
