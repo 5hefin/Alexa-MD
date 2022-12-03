@@ -21,5 +21,5 @@ module.exports = {
     WARN_LIMIT: process.env.WARN_LIMIT || "3",
     DIS_BOT: process.env.DISABLE_BOT || "null",
     ERROR_MESSAGE: toBool(process.env.ERROR_MESSAGE),
-    EXPRESS: toBool(process.env.EXPRESS),
+    KOYEB: toBool(process.env.KOYEB),
 };
